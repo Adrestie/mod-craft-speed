@@ -1,0 +1,62 @@
+#
+# mod-craft-speed configuration
+#
+
+[worldserver]
+
+########################################
+# Crafting speed by profession
+########################################
+#
+#    CraftSpeed.Enable
+#        Description: Changes the cast time of the crafting spells.
+#                     `.reload config` applies a change without a restart.
+#        Default:     1 - Enabled
+#                     0 - Disabled: every craft keeps its normal cast time
+#
+
+CraftSpeed.Enable = 1
+
+#
+#    CraftSpeed.Default
+#        Description: Cast time multiplier of the professions left at -1 below.
+#                     1 = normal, 0.5 = twice as fast, 0.25 = four times as
+#                     fast, 0 = instant, 2 = twice as slow.
+#        Range:       0 to 10
+#        Default:     0.25
+#
+
+CraftSpeed.Default = 0.25
+
+#
+#    CraftSpeed.Alchemy, CraftSpeed.Blacksmithing, CraftSpeed.Enchanting,
+#    CraftSpeed.Engineering, CraftSpeed.Inscription, CraftSpeed.Jewelcrafting,
+#    CraftSpeed.Leatherworking, CraftSpeed.Tailoring, CraftSpeed.Smelting,
+#    CraftSpeed.Cooking, CraftSpeed.FirstAid
+#        Description: Cast time multiplier of each profession, as above.
+#                     Smelting is the crafting part of Mining; gathering,
+#                     disenchanting, prospecting and milling are not changed.
+#        Range:       0 to 10, or -1 to use CraftSpeed.Default
+#        Default:     -1
+#
+
+CraftSpeed.Alchemy        = -1
+CraftSpeed.Blacksmithing  = -1
+CraftSpeed.Enchanting     = -1
+CraftSpeed.Engineering    = -1
+CraftSpeed.Inscription    = -1
+CraftSpeed.Jewelcrafting  = -1
+CraftSpeed.Leatherworking = -1
+CraftSpeed.Tailoring      = -1
+CraftSpeed.Smelting       = -1
+CraftSpeed.Cooking        = -1
+CraftSpeed.FirstAid       = -1
+
+#
+#    CraftSpeed.MinCastTime
+#        Description: Shortest cast time a craft may be brought down to, in
+#                     milliseconds. A craft already shorter keeps its own.
+#        Default:     0 - no floor
+#
+
+CraftSpeed.MinCastTime = 0

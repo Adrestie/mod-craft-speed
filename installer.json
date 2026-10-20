@@ -1,0 +1,11 @@
+{
+  "format": "wow-mods-installer/1",
+  "module": "mod-craft-speed",
+  "title": "Craft Speed",
+  "fields": {"worldserver": "required", "sources": "required"},
+  "signature": ["src/craft_speed_loader.cpp", "src/CraftSpeed.cpp"],
+  "configuration": {
+    "file": "mod-craft-speed.conf",
+    "template": "conf/mod-craft-speed.conf.dist"
+  }
+}
