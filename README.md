@@ -1,64 +1,45 @@
 # mod-craft-speed
 
-Crafting speed by profession for AzerothCore 3.3.5a: the cast time of every
-craft of a profession is multiplied by a value of its own, set in the
-configuration. Based on
-[mod-craftspeed](https://github.com/Day36512/mod-craftspeed) by Day36512,
-which applies one value to every craft.
+**WORK IN PROGRESS**
 
-## How it behaves
+Crafting speed by profession for AzerothCore 3.3.5a: the cast time of every craft of a profession is multiplied by a value of its own.
 
-- **One value per profession**: Alchemy, Blacksmithing, Enchanting,
-  Engineering, Inscription, Jewelcrafting, Leatherworking, Tailoring,
-  Smelting (the crafting part of Mining), Cooking and First Aid. A profession
-  left at -1 takes `CraftSpeed.Default`.
-- **Crafts only**: the spells a profession teaches that create or enchant an
-  item. Gathering, disenchanting, prospecting, milling and the class spells
-  that create items (conjured food, healthstones) keep their cast time.
-- **Faster or slower**: 0.5 crafts twice as fast, 0 instantly, 2 twice as
-  slowly. `CraftSpeed.MinCastTime` sets a floor.
-- **Reloadable**: `.reload config` applies new values without a restart.
-- **Tooltips** still show the normal cast time, read by the client from its
-  own files; the cast bar shows the real one.
+## Key features
 
-## How it works
+- One multiplier per profession (the crafting ones, Smelting, Cooking, First Aid), or a default for all.
+- Crafts only: gathering, disenchanting, prospecting, milling and class spells keep their cast time.
+- Faster, instant or slower, with an optional floor; applied again by `.reload config`.
+- Nothing on the client side, no database change.
 
-The core has no hook on a spell's cast time, so at startup the module gives
-each crafting spell its own copy of its `SpellCastTimes.dbc` entry (several
-spells share one) and writes the new cast time there. A crafting spell is
-found through `SkillLineAbility`: a spell of a profession's skill line, with
-a cast time, that creates or enchants an item.
+## Dependencies
 
-## Requirements
-
-| | |
+| Dependency | For |
 |---|---|
-| [AzerothCore](https://github.com/azerothcore/azerothcore-wotlk) | 3.3.5a, built with the module in `modules/` |
+| [AzerothCore](https://github.com/azerothcore/azerothcore-wotlk) (WotLK 3.3.5a) | the server |
 
-No database change, nothing on the client side.
+## How to install
 
-## Installing
+1. Download `installer.exe` from the [WoW-mods-installer releases](https://github.com/Adrestie/WoW-mods-installer/releases).
+2. Stop the worldserver.
+3. Run `installer.exe`, give it this folder and the folders it asks for, click **Check**, then **Install**.
+4. Rebuild the worldserver.
 
-Stop the world server, then run `installer.exe`, the WoW-mods installer
-([WoW-mods-installer releases](https://github.com/Adrestie/WoW-mods-installer/releases)),
-and give it this folder. It copies the module into `modules/` and the
-configuration into `configs/modules/`. Then rebuild the core.
+## How to update
 
-By hand: copy the module into `modules/`, copy
-`conf/mod-craft-speed.conf.dist` to `configs/modules/mod-craft-speed.conf`,
-rebuild the core.
+Same steps with the new version's folder, choosing **Update** instead of **Install**. Your `mod-craft-speed.conf` settings are kept. Rebuild the worldserver.
+
+## How to uninstall
+
+Same steps, choosing **Remove**. Rebuild the worldserver.
+
+## Credits
+
+- Based on [mod-craftspeed](https://github.com/Day36512/mod-craftspeed) by Day36512, which applies one value to every craft.
 
 ## Configuration
 
-`mod-craft-speed.conf`:
+`mod-craft-speed.conf` sets:
 
-| Setting | Default | |
-|---|---|---|
-| `CraftSpeed.Enable` | 1 | the module on or off |
-| `CraftSpeed.Default` | 0.25 | multiplier of the professions left at -1 |
-| `CraftSpeed.<Profession>` | -1 | multiplier of one profession, -1 for the default |
-| `CraftSpeed.MinCastTime` | 0 | shortest cast time, in milliseconds |
-
-## Licence
-
-MIT, like mod-craftspeed.
+- the module on or off;
+- the default multiplier, and one multiplier per profession;
+- the shortest cast time a craft may get.
